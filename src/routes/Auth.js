@@ -7,6 +7,74 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import React, { useState } from 'react';
+import { styled } from 'styled-components';
+
+const AuthWrapper = styled.div`
+  display: flex;
+  max-width: 500px;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+const Logo = styled.div`
+  i {
+    color: #1d9bf0;
+    font-size: 45px;
+  }
+  margin-bottom: 1.5rem;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+`;
+
+const Input = styled.input`
+  width: 300px;
+  padding: 0.875rem;
+  outline: none;
+  border: 1px solid #dcdcdc;
+  border-radius: 1.5rem;
+`;
+
+const SubmitInput = styled.input`
+  width: 330px;
+  padding: 0.875rem;
+  border: none;
+  background-color: #1d9bf0;
+  color: white;
+  border-radius: 1.5rem;
+  font-weight: 500;
+`;
+const Span = styled.span`
+  color: #1d9bf0;
+  margin: 1rem 0;
+  font-weight: 500;
+`;
+
+const Social = styled.div`
+  display: flex;
+  column-gap: 1rem;
+`;
+
+const Button = styled.button`
+  border-radius: 1.5rem;
+  padding: 0.65rem 0.875rem;
+  border: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  i {
+    font-size: 20px;
+  }
+`;
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -55,9 +123,12 @@ const Auth = () => {
     await signInWithPopup(authService, provider);
   };
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
+    <AuthWrapper>
+      <Logo>
+        <i class='ri-twitter-fill'></i>
+      </Logo>
+      <Form onSubmit={onSubmit}>
+        <Input
           name='email'
           type='text'
           placeholder='Email'
@@ -65,7 +136,7 @@ const Auth = () => {
           value={email}
           onChange={onChange}
         />
-        <input
+        <Input
           name='password'
           type='password'
           placeholder='Password'
@@ -73,21 +144,24 @@ const Auth = () => {
           value={password}
           onChange={onChange}
         />
-        <input type='submit' value={newAccount ? 'Create Account' : 'Log In'} />
+        <SubmitInput
+          type='submit'
+          value={newAccount ? 'Create Account' : 'Log In'}
+        />
         {error}
-      </form>
-      <span onClick={toggleAccount}>
-        {newAccount ? 'Sign in' : 'Create Account'}
-      </span>
-      <div>
-        <button onClick={onSocialClick} name='github'>
-          Continue with Github
-        </button>
-        <button onClick={onSocialClick} name='google'>
-          Continue with Google
-        </button>
-      </div>
-    </div>
+      </Form>
+      <Span onClick={toggleAccount}>
+        {newAccount ? 'Go to Sign in' : 'Go to Create Account'}
+      </Span>
+      <Social>
+        <Button onClick={onSocialClick} name='github'>
+          Continue with <i class='ri-github-fill'></i>
+        </Button>
+        <Button onClick={onSocialClick} name='google'>
+          Continue with <i class='ri-google-fill'></i>
+        </Button>
+      </Social>
+    </AuthWrapper>
   );
 };
 
