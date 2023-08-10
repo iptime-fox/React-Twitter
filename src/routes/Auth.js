@@ -7,6 +7,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { styled } from 'styled-components';
 
 const AuthWrapper = styled.div`
@@ -45,8 +46,9 @@ const Input = styled.input`
 
 const SubmitInput = styled.input`
   width: 330px;
-  padding: 0.875rem;
+  padding: 0.75rem;
   border: none;
+  font-size: 18px;
   background-color: #1d9bf0;
   color: white;
   border-radius: 1.5rem;
@@ -124,6 +126,9 @@ const Auth = () => {
   };
   return (
     <AuthWrapper>
+      <Helmet>
+        <title>Nwitter</title>
+      </Helmet>
       <Logo>
         <i class='ri-twitter-fill'></i>
       </Logo>
