@@ -156,7 +156,7 @@ const Auth = () => {
         {error}
       </Form>
       <Span onClick={toggleAccount}>
-        {newAccount ? 'Go to Sign in' : 'Go to Create Account'}
+        {newAccount ? 'Go to Log in' : 'Go to Create Account'}
       </Span>
       <Social>
         <Button onClick={onSocialClick} name='github'>
