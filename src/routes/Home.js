@@ -11,6 +11,7 @@ import { query } from 'firebase/database';
 import Nweet from 'components/Nweet';
 import { ref, uploadString, getDownloadURL } from '@firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
+import { Helmet } from 'react-helmet';
 
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState('');
@@ -82,6 +83,9 @@ const Home = ({ userObj }) => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Nwitter</title>
+      </Helmet>
       <form onSubmit={onSubmit}>
         <input
           value={nweet}
